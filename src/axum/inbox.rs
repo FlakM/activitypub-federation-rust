@@ -33,6 +33,10 @@ where
     <ActorT as Object>::Error: From<Error>,
     Datatype: Clone,
 {
+
+    let body_str = String::from_utf8(activity_data.body.to_vec()).unwrap();
+    debug!("body_str: {}", body_str);
+
     let (activity, actor) =
         parse_received_activity::<Activity, ActorT, _>(&activity_data.body, data).await?;
 
